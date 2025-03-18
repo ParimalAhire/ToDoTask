@@ -1,31 +1,11 @@
-# Todo Project
-# CRUD => Create, Read, Update, Delete
- 
-# Step
- 
-# python => python -V or python --version
-# pip list => display all the dependency of python
-# mysql => pip install mysql-connector-python
- 
-# connect => connection, method
-# cursor => cursor => cursor object
-# execute => execute the query
- 
 import mysql.connector as mysql
- 
+
 con = mysql.connect(host="localhost", user="root", passwd="admin")
- 
 cursor = con.cursor()
- 
+
 cursor.execute("CREATE DATABASE IF NOT EXISTS TODOAPP")
-# Database => collection of tables
- 
- 
-# print("Database created...")
- 
 cursor.execute("USE TODOAPP")
- 
-# create the tables
+
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS tb_todo (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -34,18 +14,9 @@ cursor.execute("""
     )
 """)
  
- 
-# show databases or show tables
- 
-cursor.execute("SHOW TABLES")
- 
 for i in cursor:
     print(i)
  
-# print("Table created...")
- 
- 
-# insert data
  
 while True:
     print("\n Task Management")
@@ -60,7 +31,6 @@ while True:
     if choice == "1":
         task = input("Enter task: ")
         cursor.execute("INSERT INTO tb_todo (task) VALUES (%s)", (task,))
-        print("Task added successfully!")
         con.commit()
         print("Task added successfully!")
     
